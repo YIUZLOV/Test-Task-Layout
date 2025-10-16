@@ -291,11 +291,13 @@ svg * {
 
 .body {
   font-size: clamp(0.875rem, 0.7944214876rem + 0.3305785124vw, 1.125rem);
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background: url("../images/background-image.jpg") no-repeat center center fixed;
   background-size: cover;
+  background-color: var(--color-green);
   font-family: var(--font-family-base);
   color: var(--color-light);
 }
@@ -428,7 +430,8 @@ a[class] {
   }
   .header__overlay.is-show {
     height: fit-content;
-    top: env(safe-area-inset-bottom, 0);
+    top: 0;
+    padding-bottom: calc(1.875rem + env(safe-area-inset-bottom));
   }
 }
 .header__menu {

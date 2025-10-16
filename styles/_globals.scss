@@ -3,7 +3,8 @@
 .body {
   @include fluid-text(18, 14);
 
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background: 
@@ -12,6 +13,7 @@
     center center
     fixed;
   background-size: cover;
+  background-color: var(--color-green);
   font-family: var(--font-family-base);
   color: var(--color-light);
 
