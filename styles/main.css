@@ -293,11 +293,11 @@ svg * {
   font-size: clamp(0.875rem, 0.7944214876rem + 0.3305785124vw, 1.125rem);
   width: 100%;
   height: 100%;
-  padding-block: env(safe-area-inset-top, 2.5rem);
   display: flex;
   flex-direction: column;
   background: url("../images/background-image.jpg") no-repeat center center fixed;
   background-size: 100vw 100vh;
+  mix-blend-mode: normal;
   background-color: var(--color-green);
   font-family: var(--font-family-base);
   color: var(--color-light);
@@ -396,7 +396,6 @@ a[class] {
   gap: 3.25rem;
   justify-content: start;
   align-items: center;
-  position: relative;
 }
 @media (width <= 47.99875rem) {
   .header {
@@ -679,7 +678,7 @@ a[class] {
   right: -1.875rem;
   width: 2.75rem;
   height: 3.8125rem;
-  background-image: url("/icons/after-element-map.svg");
+  background-image: url("../../icons/after-element-map.svg");
   background-size: cover;
 }
 @media (width > 63.99875rem) {

@@ -8,11 +8,6 @@ class Slider {
   }
 
   currentIndex = 0
-  isTouching = false
-  startX = 0
-  currentX = 0
-  swipeThreshold = 50
-  swipeSpeed = 300
 
   constructor () {
     this.rootElement = document.querySelector(this.selectors.root)
@@ -22,6 +17,7 @@ class Slider {
     this.sliderControlNext = this.rootElement.querySelector(this.selectors.sliderControlNext)
     this.bindEvents()
     this.addResizeListener()
+    this.addTouchEvents();
   }
 
   addResizeListener() {
@@ -51,53 +47,28 @@ class Slider {
     }
   }
 
-  handleTouchStart(e) {
-    e.preventDefault()
-    this.isTouching = true
-    this.startX = e.touches[0].clientX
-    this.startY = e.touches[0].clientY
-    this.sliderList.style.transition = 'none'
-  }
-
-  handleTouchMove(e) {
-    if (this.isTouching) {
-      e.preventDefault()
-      this.currentX = e.touches[0].clientX
-      const diffX = this.currentX - this.startX
-      
-      if (Math.abs(diffX) > Math.abs(this.currentY - this.startY)) {
-        const itemWidth = window.innerWidth + 18
-        this.sliderList.style.transform = `translateX(-${this.currentIndex * itemWidth + diffX}px)`
-      }
-    }
-  }
-
-  handleTouchEnd() {
-    if (this.isTouching) {
-      const diff = this.startX - this.currentX
-      
-      if (Math.abs(diff) > this.swipeThreshold) {
-        if (diff > 0) {
-          this.goToNext()
-        } else {
-          this.goToPrev()
-        }
-      } else {
-        this.updatePosition()
-      }
-      
-      this.isTouching = false
-    }
-  }
-
 
   bindEvents() {
     this.sliderControlPrev.addEventListener('click', () => this.goToPrev())
     this.sliderControlNext.addEventListener('click', () => this.goToNext())
+  }
 
-    this.sliderList.addEventListener('touchstart', this.handleTouchStart.bind(this))
-    this.sliderList.addEventListener('touchmove', this.handleTouchMove.bind(this))
-    this.sliderList.addEventListener('touchend', this.handleTouchEnd.bind(this))
+   addTouchEvents() {
+    this.sliderList.addEventListener('touchstart', (e) => {
+      this.isTouching = true;
+      this.startX = e.touches[0].clientX;
+    });
+
+    this.sliderList.addEventListener('touchend', (e) => {
+      this.isTouching = false;
+      const endX = e.changedTouches[0].clientX;
+      
+      if (this.startX > endX + 50) { // свайп вправо
+        this.goToNext();
+      } else if (this.startX < endX - 50) { // свайп влево
+        this.goToPrev();
+      }
+    });
   }
 }
 
