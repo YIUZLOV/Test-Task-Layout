@@ -1,0 +1,26 @@
+@use 'helpers' as *;
+
+:root {
+  --color-dark: #000000;
+  --color-light: #FFFFFF;
+  --color-light-opacity: #F6FFD2;
+  --color-light-pale: #F2F3EF;
+  --color-green: #5e7600;
+  --color-bg-opacity: rgba(255, 255, 255, 0.3);
+
+  --gradient-overlay: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 40%), 
+    rgb(0, 0, 0, 20%) 28%, 
+    rgb(0 0 0 / 0)
+  );
+
+
+  --font-family-base: 'Actay', sans-serif;
+
+  --container-width: #{rem(1140)};
+  --container-padding-x: #{rem(16)};
+
+  --transition-duration: 0.2s;
+
+}

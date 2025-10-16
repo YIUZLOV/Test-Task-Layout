@@ -1,0 +1,117 @@
+@use '../helpers' as *;
+
+.header {
+  padding-block-start: rem(30);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: rem(52);
+  justify-content: start;
+  align-items: center;
+
+  @include mobile {
+    padding-block-start: rem(30);
+    justify-content: space-between;
+  }
+
+  &__logo {
+    font-weight: 700;
+    line-height: 0.9;
+
+    @include tablet {
+      color: var(--color-light-pale);
+      z-index: 3;
+    }
+  }
+
+  &__overlay {
+    display: contents;
+
+    @include mobile {
+      position: absolute;
+      top: rem(-270);
+      left: 0;
+      z-index: 2;
+      padding-block: rem(86) rem(30);
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      background-color: var(--color-light);
+      transition-duration: var(--transition-duration);
+      
+      &.is-show {
+        height: fit-content;
+        top: rem(0);
+      }
+    }
+  }
+
+  &__menu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: rem(30);
+
+    @include mobile {
+      flex-direction: column;
+      justify-content: center;
+      color: var(--color-dark);
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: rem(40);
+
+
+      @include mobile {
+        flex-direction: column;
+        justify-content: center;
+        gap: rem(11);
+      }
+    }
+
+    &-link {
+      &:hover {
+        color: var(--color-bg-opacity);
+
+        @include mobile {
+          color: var(--color-green);
+        }
+      }
+    }
+
+    &-link--arrow {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: rem(20);
+      text-transform: uppercase;
+
+      @include mobile {
+        gap: rem(50);
+      }
+      
+
+      &::before {
+        position: absolute;
+        content: '';
+        bottom: 0;
+        width: 100%;
+        height: rem(1);
+        background: currentColor;
+      }
+    }
+  }
+
+  &__burger-button {
+    z-index: 3;
+  }
+}
