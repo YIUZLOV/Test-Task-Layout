@@ -49,12 +49,14 @@ class Slider {
   }
 
   handleTouchStart(e) {
+    e.preventDefault();
     this.isTouching = true;
     this.startX = e.touches[0].clientX
   }
 
   handleTouchMove(e) {
     if (this.isTouching) {
+      e.preventDefault();
       this.currentX = e.touches[0].clientX
     }
   }
