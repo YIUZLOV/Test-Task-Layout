@@ -11,6 +11,8 @@ class Slider {
   isTouching = false
   startX = 0
   currentX = 0
+  swipeThreshold = 50
+  swipeSpeed = 300
 
   constructor () {
     this.rootElement = document.querySelector(this.selectors.root)
@@ -30,8 +32,9 @@ class Slider {
   }
 
   updatePosition() {
-    const itemWidth = window.innerWidth + 18
+    const itemWidth = window.innerWidth + 18;
     this.sliderList.style.transform = `translateX(-${this.currentIndex * itemWidth}px)`
+    this.sliderList.style.transition = `transform ${this.swipeSpeed}ms ease`
   }
 
   goToNext() {
@@ -49,28 +52,40 @@ class Slider {
   }
 
   handleTouchStart(e) {
-    e.preventDefault();
-    this.isTouching = true;
+    e.preventDefault()
+    this.isTouching = true
     this.startX = e.touches[0].clientX
+    this.startY = e.touches[0].clientY
+    this.sliderList.style.transition = 'none'
   }
 
   handleTouchMove(e) {
     if (this.isTouching) {
-      e.preventDefault();
+      e.preventDefault()
       this.currentX = e.touches[0].clientX
+      const diffX = this.currentX - this.startX
+      
+      if (Math.abs(diffX) > Math.abs(this.currentY - this.startY)) {
+        const itemWidth = window.innerWidth + 18
+        this.sliderList.style.transform = `translateX(-${this.currentIndex * itemWidth + diffX}px)`
+      }
     }
   }
 
   handleTouchEnd() {
     if (this.isTouching) {
       const diff = this.startX - this.currentX
-      if (Math.abs(diff) > 50) {
+      
+      if (Math.abs(diff) > this.swipeThreshold) {
         if (diff > 0) {
           this.goToNext()
-        } else { 
+        } else {
           this.goToPrev()
         }
+      } else {
+        this.updatePosition()
       }
+      
       this.isTouching = false
     }
   }
@@ -80,7 +95,6 @@ class Slider {
     this.sliderControlPrev.addEventListener('click', () => this.goToPrev())
     this.sliderControlNext.addEventListener('click', () => this.goToNext())
 
-    // Сенсорное управление
     this.sliderList.addEventListener('touchstart', this.handleTouchStart.bind(this))
     this.sliderList.addEventListener('touchmove', this.handleTouchMove.bind(this))
     this.sliderList.addEventListener('touchend', this.handleTouchEnd.bind(this))

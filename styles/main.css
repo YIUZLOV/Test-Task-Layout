@@ -182,7 +182,8 @@ svg * {
 }
 @font-face {
   font-family: "Actay";
-  src: url("../fonts/Actay.woff2") format("woff2"), url("../fonts/Actay.woff") format("woff");
+  src: url("/fonts/Actay.woff2") format("woff2"), url("/fonts/Actay.woff") format("woff");
+  font-display: swap;
 }
 :root {
   --color-dark: #000000;
@@ -415,7 +416,7 @@ a[class] {
 @media (width <= 47.99875rem) {
   .header__overlay {
     position: absolute;
-    top: -16.875rem;
+    top: -100%;
     left: 0;
     z-index: 2;
     padding-block: 5.375rem 1.875rem;
@@ -612,6 +613,8 @@ a[class] {
     display: flex;
     flex-direction: row;
     transition: transform 0.3s ease;
+    will-change: transform;
+    touch-action: pan-x;
   }
 }
 .hero__map-item {
@@ -672,7 +675,7 @@ a[class] {
   right: -1.875rem;
   width: 2.75rem;
   height: 3.8125rem;
-  background-image: url("../../icons/after-element-map.svg");
+  background-image: url("/icons/after-element-map.svg");
   background-size: cover;
 }
 @media (width > 63.99875rem) {
