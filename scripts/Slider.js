@@ -53,7 +53,7 @@ class Slider {
     this.sliderControlNext.addEventListener('click', () => this.goToNext())
   }
 
-   addTouchEvents() {
+  addTouchEvents() {
     this.sliderList.addEventListener('touchstart', (e) => {
       this.isTouching = true;
       this.startX = e.touches[0].clientX;

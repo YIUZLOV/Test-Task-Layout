@@ -422,7 +422,7 @@ a[class] {
     top: -16.875rem;
     left: 0;
     z-index: 2;
-    padding-block: 5.375rem 1.875rem;
+    padding-block: calc(env(safe-area-inset-bottom) + 5.375rem) 1.875rem;
     width: 100%;
     height: fit-content;
     display: flex;
@@ -430,7 +430,7 @@ a[class] {
     transition-duration: var(--transition-duration);
   }
   .header__overlay.is-show {
-    height: fit-content;
+    height: auto;
     top: 0;
   }
 }

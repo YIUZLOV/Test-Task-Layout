@@ -32,7 +32,7 @@
       top: rem(-270);
       left: 0;
       z-index: 2;
-      padding-block: rem(86) rem(30);
+      padding-block: calc(env(safe-area-inset-bottom) + rem(86)) rem(30);
       width: 100%;
       height: fit-content;
       display: flex;
@@ -40,7 +40,7 @@
       transition-duration: var(--transition-duration);
       
       &.is-show {
-        height: fit-content;
+        height: auto;
         top: 0;
       }
     }
