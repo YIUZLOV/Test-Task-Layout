@@ -428,7 +428,7 @@ a[class] {
   }
   .header__overlay.is-show {
     height: fit-content;
-    top: 0rem;
+    top: env(safe-area-inset-bottom, 0);
   }
 }
 .header__menu {

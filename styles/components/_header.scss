@@ -41,7 +41,8 @@
       
       &.is-show {
         height: fit-content;
-        top: rem(0);
+        top: env(safe-area-inset-bottom, 0);
+        // padding-bottom: calc(rem(30) + env(safe-area-inset-bottom));
       }
     }
   }
